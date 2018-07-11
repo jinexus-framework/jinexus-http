@@ -1,0 +1,32 @@
+{
+    "name": "jinexus-framework/jinexus-http",
+    "type": "component",
+    "description": "Http component from JiNexus Framework",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "jinexus",
+        "http"
+    ],
+    "homepage": "https://github.com/jinexus-framework/jinexus-http",
+    "authors": [
+        {
+            "name": "Jimvirle E. Calago",
+            "email": "jimvirle@gmail.com"
+        }
+    ],
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^5.6 || ^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JiNexus\\Http\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JiNexus\\Http\\": "test/"
+        }
+    }
+}
