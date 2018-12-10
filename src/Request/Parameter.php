@@ -12,51 +12,51 @@ use IteratorAggregate;
 class Parameter implements Countable, IteratorAggregate
 {
     /**
-     * Parameters.
+     * Parameter.
      *
      * @var array
      */
-    protected $parameters;
+    protected $parameter;
 
     /**
-     * Parameters constructor
+     * Parameter constructor
      *
-     * @param array $parameters
+     * @param array $parameter
      */
-    public function __construct($parameters = [])
+    public function __construct($parameter = [])
     {
-        $this->parameters = $parameters;
+        $this->parameter = $parameter;
     }
 
     /**
-     * Return the count of all paramenters
+     * Return the count of all parameter
      *
      * @return int
      */
     public function count()
     {
-        return count($this->parameters);
+        return count($this->parameter);
     }
 
     /**
      * Adds a parameter
      *
-     * @param $parameters
+     * @param $parameter
      */
-    public function add($parameters = [])
+    public function add($parameter = [])
     {
-        $this->parameters = array_replace($this->parameters, $parameters);
+        $this->parameter = array_replace($this->parameter, $parameter);
     }
 
     /**
      * Returns true if the parameter exists and false if not
      *
-     * @param string $name
+     * @param $key
      * @return bool
      */
-    public function has(string $name)
+    public function has($key)
     {
-        return array_key_exists($key, $this->parameters);
+        return array_key_exists($key, $this->parameter);
     }
 
     /**
@@ -68,41 +68,41 @@ class Parameter implements Countable, IteratorAggregate
      */
     public function get($key, $default = null)
     {
-        if (! array_key_exists($key, $this->parameters))
+        if (! array_key_exists($key, $this->parameter))
         {
             return $default;
         }
 
-        return $this->parameters[$key];
+        return $this->parameter[$key];
     }
 
     /**
      * Removes a parameter
      *
-     * @param string $name
+     * @param $key
      */
-    public function remove(string $name)
+    public function remove($key)
     {
-        unset($this->parameters[$key]);
+        unset($this->parameter[$key]);
     }
 
     /**
-     * Returns all the parameters
+     * Returns all the parameter
      *
      * @return array
      */
     public function all()
     {
-        return $this->parameters;
+        return $this->parameter;
     }
 
     /**
-     * Retruns an array iterator object
+     * Returns an array iterator object
      *
      * @return ArrayIterator|\Traversable
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->parameters);
+        return new ArrayIterator($this->parameter);
     }
 }

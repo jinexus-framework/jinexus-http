@@ -1,7 +1,7 @@
 {
     "name": "jinexus-framework/jinexus-http",
     "type": "component",
-    "description": "Http component from JiNexus Framework",
+    "description": "HTTP component from JiNexus Framework",
     "license": "BSD-3-Clause",
     "keywords": [
         "jinexus",

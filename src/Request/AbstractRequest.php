@@ -17,12 +17,12 @@ abstract class AbstractRequest extends AbstractBase implements RequestInterface
     /**
      * @var Parameter
      */
-    protected $cookies;
+    protected $cookie;
 
     /**
      * @var Parameter
      */
-    protected $files;
+    protected $file;
 
     /**
      * @var Parameter
@@ -45,31 +45,31 @@ abstract class AbstractRequest extends AbstractBase implements RequestInterface
      */
     public function __construct(array $request = [])
     {
-        $this->cookies = new Parameter(isset($request['cookies']) ? $request['cookies'] : $_COOKIE);
-        $this->files = new Parameter(isset($request['files']) ? $request['cookies'] : $_COOKIE);
+        $this->cookie = new Parameter(isset($request['cookie']) ? $request['cookie'] : $_COOKIE);
+        $this->file = new Parameter(isset($request['file']) ? $request['file'] : $_FILES);
         $this->post = new Parameter(isset($request['post']) ? $request['post'] : $_POST);
         $this->query = new Parameter(isset($request['get']) ? $request['get'] : $_GET);
         $this->server = new Parameter(isset($request['server']) ? $request['server'] : $_SERVER);
     }
 
     /**
-     * Returns the cookies
+     * Returns the cookie data
      *
      * @return Parameter
      */
-    public function getCookies()
+    public function getCookie()
     {
-        return $this->cookies;
+        return $this->cookie;
     }
 
     /**
-     * Returns the files
+     * Returns the file data
      *
      * @return Parameter
      */
-    public function getFiles()
+    public function getFile()
     {
-        return $this->files;
+        return $this->file;
     }
 
     /**
@@ -83,7 +83,7 @@ abstract class AbstractRequest extends AbstractBase implements RequestInterface
     }
 
     /**
-     * Returns the query string
+     * Returns the query string data
      *
      * @return Parameter
      */
@@ -93,7 +93,7 @@ abstract class AbstractRequest extends AbstractBase implements RequestInterface
     }
 
     /**
-     * Returns the server
+     * Returns the server data
      *
      * @return Parameter
      */
@@ -138,7 +138,6 @@ abstract class AbstractRequest extends AbstractBase implements RequestInterface
             if(($host = $this->server->get('HTTP_HOST')) === null)
             {
                 $host = $this->server->get('SERVER_NAME');
-
                 $port = $this->server->get('SERVER_PORT');
 
                 if($port !== null && $port != 80)

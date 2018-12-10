@@ -16,18 +16,18 @@ interface RequestInterface extends BaseInterface
     public function __construct(array $request = []);
 
     /**
-     * Returns the cookies
+     * Returns the cookie data
      *
      * @return Parameter
      */
-    public function getCookies();
+    public function getCookie();
 
     /**
-     * Returns the files
+     * Returns the file data
      *
      * @return Parameter
      */
-    public function getFiles();
+    public function getFile();
 
     /**
      * Returns the post data
@@ -37,14 +37,14 @@ interface RequestInterface extends BaseInterface
     public function getPost();
 
     /**
-     * Returns the query string
+     * Returns the query string data
      *
      * @return Parameter
      */
     public function getQuery();
 
     /**
-     * Returns the server
+     * Returns the server data
      *
      * @return Parameter
      */
