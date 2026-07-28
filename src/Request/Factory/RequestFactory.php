@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace JiNexus\Http\Request\Factory;
 
 use JiNexus\Http\Factory\AbstractFactory;
@@ -13,7 +16,7 @@ class RequestFactory extends AbstractFactory
     /**
      * @return Request
      */
-    public static function build()
+    public static function build(): Request
     {
         return new Request();
     }

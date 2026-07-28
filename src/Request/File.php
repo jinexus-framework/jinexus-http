@@ -1,15 +1,12 @@
 <?php
-namespace JiNexus\Http\Request;
 
-use ArrayIterator;
-use Countable;
-use IteratorAggregate;
+declare(strict_types=1);
+
+namespace JiNexus\Http\Request;
 
 /**
  * Class File
  * @package JiNexus\Http\Request
  */
 class File extends Parameter
-{
-
-}
+{ }

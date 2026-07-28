@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace JiNexus\Http\Http\Factory;
 
 use JiNexus\Http\Factory\AbstractFactory;
@@ -14,7 +17,7 @@ class HttpFactory extends AbstractFactory
     /**
      * @return Http
      */
-    public static function build()
+    public static function build(): Http
     {
         $request = RequestFactory::build();
 

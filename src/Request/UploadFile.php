@@ -1,7 +1,8 @@
 <?php
-namespace JiNexus\Http\Request;
 
-use JiNexus\Http\Exception;
+declare(strict_types=1);
+
+namespace JiNexus\Http\Request;
 
 use SplFileInfo;
 
@@ -10,6 +11,4 @@ use SplFileInfo;
  * @package JiNexus\Http\Request
  */
 class UploadFile extends SplFileInfo
-{
-
-}
+{ }

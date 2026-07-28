@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace JiNexus\Http\Http;
 
 use JiNexus\Http\Base\AbstractBase;
@@ -13,7 +16,11 @@ abstract class AbstractHttp extends AbstractBase implements HttpInterface
     /**
      * @var RequestInterface
      */
-    protected $request;
+    public RequestInterface $request {
+        get {
+            return $this->request;
+        }
+    }
 
     /**
      * AbstractHttp constructor
@@ -22,13 +29,5 @@ abstract class AbstractHttp extends AbstractBase implements HttpInterface
     public function __construct(RequestInterface $request)
     {
         $this->request = $request;
-    }
-
-    /**
-     * @return RequestInterface
-     */
-    public function getRequest()
-    {
-        return $this->request;
     }
 }

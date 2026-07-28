@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace JiNexus\Http\Http;
 
 use JiNexus\Http\Base\BaseInterface;
@@ -16,8 +19,7 @@ interface HttpInterface extends BaseInterface
      */
     public function __construct(RequestInterface $request);
 
-    /**
-     * @return RequestInterface
-     */
-    public function getRequest();
+    public RequestInterface $request {
+        get;
+    }
 }

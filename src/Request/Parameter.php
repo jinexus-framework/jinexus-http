@@ -1,9 +1,14 @@
 <?php
+
+declare(strict_types=1);
+
 namespace JiNexus\Http\Request;
 
 use ArrayIterator;
 use Countable;
 use IteratorAggregate;
+use ReturnTypeWillChange;
+use Traversable;
 
 /**
  * Class Parameter
@@ -16,24 +21,24 @@ class Parameter implements Countable, IteratorAggregate
      *
      * @var array
      */
-    protected $parameter;
+    protected array $parameter;
 
     /**
      * Parameter constructor
      *
      * @param array $parameter
      */
-    public function __construct($parameter = [])
+    public function __construct(array $parameter = [])
     {
         $this->parameter = $parameter;
     }
 
     /**
-     * Return the count of all parameter
+     * Return the count of all parameters
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->parameter);
     }
@@ -41,9 +46,9 @@ class Parameter implements Countable, IteratorAggregate
     /**
      * Adds a parameter
      *
-     * @param $parameter
+     * @param array $parameter
      */
-    public function add($parameter = [])
+    public function add(array $parameter = []): void
     {
         $this->parameter = array_replace($this->parameter, $parameter);
     }
@@ -54,7 +59,7 @@ class Parameter implements Countable, IteratorAggregate
      * @param $key
      * @return bool
      */
-    public function has($key)
+    public function has($key): bool
     {
         return array_key_exists($key, $this->parameter);
     }
@@ -63,10 +68,10 @@ class Parameter implements Countable, IteratorAggregate
      * Gets a parameter value
      *
      * @param $key
-     * @param null $default
+     * @param mixed $default
      * @return mixed|null
      */
-    public function get($key, $default = null)
+    public function get($key, mixed $default = null): mixed
     {
         if (! array_key_exists($key, $this->parameter))
         {
@@ -81,7 +86,7 @@ class Parameter implements Countable, IteratorAggregate
      *
      * @param $key
      */
-    public function remove($key)
+    public function remove($key): void
     {
         unset($this->parameter[$key]);
     }
@@ -91,7 +96,7 @@ class Parameter implements Countable, IteratorAggregate
      *
      * @return array
      */
-    public function all()
+    public function all(): array
     {
         return $this->parameter;
     }
@@ -99,9 +104,10 @@ class Parameter implements Countable, IteratorAggregate
     /**
      * Returns an array iterator object
      *
-     * @return ArrayIterator|\Traversable
+     * @return ArrayIterator|Traversable
      */
-    public function getIterator()
+    #[ReturnTypeWillChange]
+    public function getIterator(): Traversable|ArrayIterator
     {
         return new ArrayIterator($this->parameter);
     }

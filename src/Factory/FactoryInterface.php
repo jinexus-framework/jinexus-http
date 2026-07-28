@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace JiNexus\Http\Factory;
 
 use JiNexus\Http\Base\BaseInterface;

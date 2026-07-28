@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace JiNexus\Http\Request;
 
 use JiNexus\Http\Base\BaseInterface;
@@ -15,59 +18,44 @@ interface RequestInterface extends BaseInterface
      */
     public function __construct(array $request = []);
 
-    /**
-     * Returns the cookie data
-     *
-     * @return Parameter
-     */
-    public function getCookie();
+    public Parameter $cookie {
+        get;
+    }
 
-    /**
-     * Returns the file data
-     *
-     * @return Parameter
-     */
-    public function getFile();
+    public Parameter $file {
+        get;
+    }
 
-    /**
-     * Returns the post data
-     *
-     * @return Parameter
-     */
-    public function getPost();
+    public Parameter $post {
+        get;
+    }
 
-    /**
-     * Returns the query string data
-     *
-     * @return Parameter
-     */
-    public function getQuery();
+    public Parameter $query {
+        get;
+    }
 
-    /**
-     * Returns the server data
-     *
-     * @return Parameter
-     */
-    public function getServer();
+    public Parameter $server {
+        get;
+    }
 
     /**
      * Returns true if the request was made using Ajax and false if not
      *
      * @return bool
      */
-    public function isAjax();
+    public function isAjax(): bool;
 
     /**
      * Returns true if the request was made using HTTPS and false if not
      *
      * @return bool
      */
-    public function isSecure();
+    public function isSecure(): bool;
 
     /**
      * Returns the base url of the request
      *
      * @return string
      */
-    public function baseUrl();
+    public function baseUrl(): string;
 }

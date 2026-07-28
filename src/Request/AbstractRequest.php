@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace JiNexus\Http\Request;
 
 use JiNexus\Http\Base\AbstractBase;
@@ -10,34 +13,54 @@ use JiNexus\Http\Base\AbstractBase;
 abstract class AbstractRequest extends AbstractBase implements RequestInterface
 {
     /**
-     * @var
+     * @var string
      */
-    protected $baseUrl;
+    protected string $baseUrl;
 
     /**
      * @var Parameter
      */
-    protected $cookie;
+    public Parameter $cookie {
+        get {
+            return $this->cookie;
+        }
+    }
 
     /**
      * @var Parameter
      */
-    protected $file;
+    public Parameter $file {
+        get {
+            return $this->file;
+        }
+    }
 
     /**
      * @var Parameter
      */
-    protected $post;
+    public Parameter $post {
+        get {
+            return $this->post;
+        }
+    }
 
     /**
      * @var Parameter
      */
-    protected $query;
+    public Parameter $query {
+        get {
+            return $this->query;
+        }
+    }
 
     /**
      * @var Parameter
      */
-    protected $server;
+    public Parameter $server {
+        get {
+            return $this->server;
+        }
+    }
 
     /**
      * AbstractRequest constructor
@@ -45,61 +68,11 @@ abstract class AbstractRequest extends AbstractBase implements RequestInterface
      */
     public function __construct(array $request = [])
     {
-        $this->cookie = new Parameter(isset($request['cookie']) ? $request['cookie'] : $_COOKIE);
-        $this->file = new Parameter(isset($request['file']) ? $request['file'] : $_FILES);
-        $this->post = new Parameter(isset($request['post']) ? $request['post'] : $_POST);
-        $this->query = new Parameter(isset($request['get']) ? $request['get'] : $_GET);
-        $this->server = new Parameter(isset($request['server']) ? $request['server'] : $_SERVER);
-    }
-
-    /**
-     * Returns the cookie data
-     *
-     * @return Parameter
-     */
-    public function getCookie()
-    {
-        return $this->cookie;
-    }
-
-    /**
-     * Returns the file data
-     *
-     * @return Parameter
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    /**
-     * Returns the post data
-     *
-     * @return Parameter
-     */
-    public function getPost()
-    {
-        return $this->post;
-    }
-
-    /**
-     * Returns the query string data
-     *
-     * @return Parameter
-     */
-    public function getQuery()
-    {
-        return $this->query;
-    }
-
-    /**
-     * Returns the server data
-     *
-     * @return Parameter
-     */
-    public function getServer()
-    {
-        return $this->server;
+        $this->cookie = new Parameter($request['cookie'] ?? $_COOKIE);
+        $this->file = new Parameter($request['file'] ?? $_FILES);
+        $this->post = new Parameter($request['post'] ?? $_POST);
+        $this->query = new Parameter($request['get'] ?? $_GET);
+        $this->server = new Parameter($request['server'] ?? $_SERVER);
     }
 
     /**
@@ -107,7 +80,7 @@ abstract class AbstractRequest extends AbstractBase implements RequestInterface
      *
      * @return bool
      */
-    public function isAjax()
+    public function isAjax(): bool
     {
         return $this->server->get('HTTP_X_REQUESTED_WITH') === 'XMLHttpRequest';
     }
@@ -117,7 +90,7 @@ abstract class AbstractRequest extends AbstractBase implements RequestInterface
      *
      * @return bool
      */
-    public function isSecure()
+    public function isSecure(): bool
     {
         return filter_var($this->server->get('HTTPS', false), FILTER_VALIDATE_BOOLEAN);
     }
@@ -127,7 +100,7 @@ abstract class AbstractRequest extends AbstractBase implements RequestInterface
      *
      * @return string
      */
-    public function baseUrl()
+    public function baseUrl(): string
     {
         if(empty($this->baseUrl))
         {
